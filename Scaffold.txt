@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext 'Server=DESKTOP-LDSIAB0;Database=DCI_TSP; User ID=sa; Password=Pa$$w0rd@21;Trusted_Connection=false; MultipleActiveResultSets=true;Encrypt=false;TrustServerCertificate=True' Microsoft.EntityFrameworkCore.SqlServer -ContextDir UserModels -OutputDir UserModels   -force

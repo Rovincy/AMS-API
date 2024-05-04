@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DCI_TSP_API", "DCI_TSP_API.csproj", "{6EB3CCFC-6A89-448C-86D1-EC59C5B3ADF9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerSide", "..\FromFabrice\ServerSide\ServerSide.csproj", "{58686789-4B2F-40DB-8621-101F6C4A8523}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EB3CCFC-6A89-448C-86D1-EC59C5B3ADF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EB3CCFC-6A89-448C-86D1-EC59C5B3ADF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EB3CCFC-6A89-448C-86D1-EC59C5B3ADF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EB3CCFC-6A89-448C-86D1-EC59C5B3ADF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58686789-4B2F-40DB-8621-101F6C4A8523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58686789-4B2F-40DB-8621-101F6C4A8523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58686789-4B2F-40DB-8621-101F6C4A8523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58686789-4B2F-40DB-8621-101F6C4A8523}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {221C899E-571D-47C6-BE69-938FD4CEB5A4}
+	EndGlobalSection
+EndGlobal
