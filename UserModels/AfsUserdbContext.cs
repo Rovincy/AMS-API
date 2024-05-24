@@ -24,6 +24,7 @@ public partial class AfsUserdbContext : DbContext
     public virtual DbSet<Member> Members { get; set; }
 
     public virtual DbSet<Memberrole> Memberroles { get; set; }
+    public virtual DbSet<Messages> Messages { get; set; }
 
     public virtual DbSet<Nationality> Nationalities { get; set; }
 
@@ -91,6 +92,17 @@ public partial class AfsUserdbContext : DbContext
             entity.Property(e => e.UserId).HasColumnType("int(11)");
             entity.Property(e => e.Action);
             entity.Property(e => e.Timestamp).HasColumnType("datetime");
+        });
+        modelBuilder.Entity<Messages>(entity =>
+        {
+            entity.ToTable("messages"); // Table name
+            entity.HasKey(m => m.Id); // Primary key
+            entity.Property(m => m.Id).HasColumnName("id"); // Column name
+            entity.Property(m => m.SenderId).HasColumnName("senderId");
+            entity.Property(m => m.ReceiverId).HasColumnName("receiverId");
+            entity.Property(m => m.Message).HasColumnName("message");
+            entity.Property(m => m.Timestamp).HasColumnName("timestamp");
+            entity.Property(m => m.Status).HasColumnName("status");
         });
         modelBuilder.Entity<Mariage>(entity =>
         {

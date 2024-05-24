@@ -1,16 +1,19 @@
 using DCI_TSP_API.Helpers;
 using DCI_TSP_API.RxModels;
+using DCI_TSP_API.TpaDataModel;
 using DCI_TSP_API.UserModels;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var DefaultConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var TpaConnectionString = builder.Configuration.GetConnectionString("TpaConnection");
 var UserDbConnection = builder.Configuration.GetConnectionString("UserDbConnection");
 var RxDbConnection = builder.Configuration.GetConnectionString("RxDBConnectionString");
 var mySqlVersion = new MySqlServerVersion(new Version(8, 0, 23)); // Adjust version as needed
 
 builder.Services.AddDbContext<AfsContext>(options => options.UseMySql(DefaultConnectionString, mySqlVersion));
+builder.Services.AddDbContext<TpaDbContext>(options => options.UseMySql(TpaConnectionString, mySqlVersion));
 builder.Services.AddDbContext<AfsUserdbContext>(options => options.UseMySql(UserDbConnection, mySqlVersion));
 
 // Specify the MySQL ServerVersion for UseMySql
@@ -36,11 +39,12 @@ builder.Services.AddCors(options =>
 }
 );
 var app = builder.Build();
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-    app.UseSwagger();
+app.UseSwagger();
     app.UseSwaggerUI();
 //}
 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DCI_TSP_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c9c47a2e47d95ea1b471552a68a30c94f421a543")]
 [assembly: System.Reflection.AssemblyProductAttribute("DCI_TSP_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DCI_TSP_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

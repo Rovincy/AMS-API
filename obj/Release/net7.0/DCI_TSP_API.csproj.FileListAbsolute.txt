@@ -308,3 +308,4 @@ F:\Apex\AFS_API\obj\Release\net7.0\DCI_TSP_API.pdb
 F:\Apex\AFS_API\obj\Release\net7.0\DCI_TSP_API.genruntimeconfig.cache
 F:\Apex\AFS_API\obj\Release\net7.0\ref\DCI_TSP_API.dll
 E:\Apex\AFS_API\obj\Release\net7.0\DCI_TSP_API.sourcelink.json
+F:\Apex\AFS_API\obj\Release\net7.0\DCI_TSP_API.sourcelink.json

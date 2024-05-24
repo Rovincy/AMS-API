@@ -14,6 +14,7 @@
         public decimal? MaternityDeliveryBenefit { get; set; }
         public decimal? ChronicBenefit { get; set; }
         public decimal? CancerBenefit { get; set; }
+        public decimal? OverallSurgeryBenefit { get; set; }
         public DateTime? LastUpdate { get; set; }
     }
 }

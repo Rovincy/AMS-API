@@ -42,7 +42,8 @@ namespace DCI_TSP_API.Controllers
     cro.maternityDeliveryBenefit,
     cro.chronicBenefit,
     cro.cancerBenefit,
-    cro.lastUpdate
+    cro.lastUpdate,
+    cro.overallSurgeryBenefit
 FROM 
     company C
 LEFT JOIN 
@@ -78,6 +79,7 @@ ORDER BY C.Company ASC;
                     item.CancerBenefit = croDto.CancerBenefit;
                     item.Description = croDto.Description;
                     item.LastUpdate = croDto.LastUpdate;
+                    item.OverallSurgeryBenefit = croDto.OverallSurgeryBenefit;
                     item.PlanId = croDto.PlanId;
                 }
                 _context.AmsCros.UpdateRange(data);

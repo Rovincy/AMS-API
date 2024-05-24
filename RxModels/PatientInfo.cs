@@ -10,5 +10,9 @@ namespace DCI_TSP_API.RxModels
         public string? Firstname { get; set; }
         public string? Othernames { get; set; }
         public string? EmployerId { get; set; }
+        public string? PrincipalId { get; set; }
+        public string? PrincipalFirstname { get; set; }
+        public string? PrincipalOthernames { get; set; }
+        public string? PrincipalLastname { get; set; }
     }
 }

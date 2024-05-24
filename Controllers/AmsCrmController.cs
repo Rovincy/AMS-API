@@ -49,8 +49,12 @@ group by C.userId
             await _context.AmsCRMs.AddAsync(crm);
             if (crm.CallType=="REFUND CODE") {
                 AmsRefund refund = new AmsRefund();
+                refund.LastWorkedOnBy = crm.UserId;
+                refund.LastWorkedOnAt = DateTime.Now;
                 refund.RefundCode = crm.RefundCode;
+                refund.CompanyType = crm.CompanyType;
                 refund.MemberNumber = crm.MemberNumber;
+                refund.CRMOfficerComments = crm.callDetails;
                 await _context.AmsRefunds.AddAsync(refund);
             }
             await _context.SaveChangesAsync();

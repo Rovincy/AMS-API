@@ -9,6 +9,7 @@ using DCI_TSP_API.Dto.Banks;
 using DCI_TSP_API.Dto.PaymentAdvice;
 using DCI_TSP_API.Dto.CompanyPremiumPlan;
 using DCI_TSP_API.Dto.AuditTrail;
+using DCI_TSP_API.Dto.Messages;
 //using DCI_TSP_API.RxModels;
 
 namespace DCI_TSP_API.Helpers
@@ -22,8 +23,10 @@ namespace DCI_TSP_API.Helpers
             CreateMap<AmsCrmCreateDto, AmsCRM>().ReverseMap();
             CreateMap<AmsCroCreateDto, AmsCro>().ReverseMap();
             CreateMap<AmsHspCreateDto, AmsHsp>().ReverseMap();
+            CreateMap<AmsHspCreateDto, AmsHspHistory>().ReverseMap();
             CreateMap<AmsRefundCreateDto, AmsRefund>().ReverseMap();
             CreateMap<AuditTrailDto, AuditTrail>().ReverseMap();
+            CreateMap<MessageCreateDto, Messages>().ReverseMap();
 
             CreateMap<PaymentAdviceCreateDto, DCI_TSP_API.RxModels.PaymentAdvice>().ReverseMap();
             //CreateMap<PaymentAdviceCreateDto, DCI_TSP_API.UserModels.PaymentAdvice>().ReverseMap();

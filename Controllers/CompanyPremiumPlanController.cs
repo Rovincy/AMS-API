@@ -22,11 +22,18 @@ namespace DCI_TSP_API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Company>>> GetProviders()
+        public async Task<ActionResult<IEnumerable<Company>>> GetCompanies()
         {
             List<Company> company = await _context.Companies.OrderBy(x => x.company).ToListAsync();
             return Ok(company);
         }
+
+        //[HttpGet("TPA")]
+        //public async Task<ActionResult<IEnumerable<Company>>> GetTPACompanies()
+        //{
+        //    List<Company> company = await _context.Companies.OrderBy(x => x.company).ToListAsync();
+        //    return Ok(company);
+        //}
 
         [HttpGet("getPremiumBalance")]
         //[HttpGet("getPremiumBalance/{year}")]

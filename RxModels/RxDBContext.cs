@@ -1,4 +1,5 @@
 ﻿using System;
+using DCI_TSP_API.TpaDataModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -82,7 +83,7 @@ namespace DCI_TSP_API.RxModels
         public virtual DbSet<MemberStatusLog> MemberStatusLogs { get; set; }
         public virtual DbSet<MembersDeactivate> MembersDeactivates { get; set; }
         public virtual DbSet<NatureOfVisit> NatureOfVisits { get; set; }
-        public virtual DbSet<PatientInfo> PatientInfos { get; set; }
+        public virtual DbSet<PatientInfo> PatientInfos { get; set; }       
         public virtual DbSet<PatientInfoBeforeCompanyIdCorrect> PatientInfoBeforeCompanyIdCorrects { get; set; }
         public virtual DbSet<PatientInfoNewChanged> PatientInfoNewChangeds { get; set; }
         public virtual DbSet<PatientInfoRegistration> PatientInfoRegistrations { get; set; }
@@ -6282,10 +6283,13 @@ namespace DCI_TSP_API.RxModels
                 entity.Property(e => e.Firstname).HasColumnName("firstname").HasMaxLength(255).IsUnicode(false);
                 entity.Property(e => e.Othernames).HasColumnName("othernames").HasMaxLength(255).IsUnicode(false);
                 entity.Property(e => e.EmployerId).HasColumnName("employer_id").HasMaxLength(20).IsUnicode(false);
+                entity.Property(e => e.PrincipalId).HasColumnName("principal_id").HasMaxLength(20).IsUnicode(false);
+                entity.Property(e => e.PrincipalFirstname);
+                entity.Property(e => e.PrincipalOthernames);
+                entity.Property(e => e.PrincipalLastname);
                 
             });
-        
-        modelBuilder.Entity<PatientInfoBeforeCompanyIdCorrect>(entity =>
+            modelBuilder.Entity<PatientInfoBeforeCompanyIdCorrect>(entity =>
             {
                 entity.ToTable("patient_info_before_company_id_correct");
 

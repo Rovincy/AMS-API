@@ -59,6 +59,8 @@ order by P.facility_name asc
             var hsp = mapper.Map<AmsHsp>(hspDto);
             await _context.AmsHsps.AddAsync(hsp);
             }
+            var hspHistory = mapper.Map<AmsHspHistory>(hspDto);
+            await _context.AmsHspHistories.AddAsync(hspHistory);
             await _context.SaveChangesAsync();
 
             return Ok();

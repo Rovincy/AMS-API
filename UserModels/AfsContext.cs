@@ -37,8 +37,10 @@ public partial class AfsContext : DbContext
     public virtual DbSet<PaymentAdvice> PaymentAdvices { get; set; }
     public virtual DbSet<AmsCro> AmsCros { get; set; }
     public virtual DbSet<AmsHsp> AmsHsps { get; set; }
+    public virtual DbSet<AmsHspHistory> AmsHspHistories { get; set; }
     public virtual DbSet<AmsCroElement> AmsCroElements { get; set; }
     public virtual DbSet<AmsHspElement> AmsHspElements { get; set; }
+    public virtual DbSet<Files> Files { get; set; }
     //public virtual DbSet<PaymentAdvice> PaymentAdvices { get; set; }
 
 
@@ -59,15 +61,21 @@ public partial class AfsContext : DbContext
             entity.HasKey(e => e.Id); // Set primary key
 
             // Configure other properties
-            entity.Property(e => e.CallType).IsRequired().HasMaxLength(50);
-            entity.Property(e => e.providerId).HasMaxLength(50);
-            entity.Property(e => e.MemberNumber).HasMaxLength(50);
-            entity.Property(e => e.callDetails).HasMaxLength(50);
-            entity.Property(e => e.PhoneNumber).IsRequired().HasMaxLength(50);
+            entity.Property(e => e.CallType);
+            entity.Property(e => e.providerId);
+            entity.Property(e => e.MemberNumber);
+            entity.Property(e => e.callDetails);
+            entity.Property(e => e.CompanyType);
+            entity.Property(e => e.PhoneNumber);
             entity.Property(e => e.CallDuration).IsRequired();
             entity.Property(e => e.UserId).IsRequired();
             entity.Property(e => e.FollowUp);
-            entity.Property(e => e.RefundCode);
+            entity.Property(e => e.AuthorizationType);
+            entity.Property(e => e.Limit);
+            entity.Property(e => e.AuthorizationType);
+            entity.Property(e => e.Location);
+            entity.Property(e => e.DeliveryDuration);
+            entity.Property(e => e.ReceiverName);
             entity.Property(e => e.Timestamp).IsRequired();
         });
         modelBuilder.Entity<AmsRefund>(entity =>
@@ -78,21 +86,39 @@ public partial class AfsContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.RefundCode).HasColumnName("refundCode");
+            entity.Property(e => e.BatchCode).HasColumnName("batchCode");
             entity.Property(e => e.MemberNumber).HasColumnName("memberNumber");
             entity.Property(e => e.PhoneNumber).HasColumnName("phoneNumber");
             entity.Property(e => e.AmountClaimed).HasColumnName("amountClaimed");
             entity.Property(e => e.AmountAwarded).HasColumnName("amountAwarded");
-            entity.Property(e => e.Comments).HasColumnName("comments");
+            entity.Property(e => e.CRMOfficerComments).HasColumnName("crmOfficerComments");
             entity.Property(e => e.RefundOfficer).HasColumnName("refundOfficer");
+            entity.Property(e => e.RefundOfficerComments).HasColumnName("refundOfficerComments");
             entity.Property(e => e.RefundOfficerTimestamp).HasColumnName("refundOfficerTimestamp");
             entity.Property(e => e.ClaimRefundOfficer).HasColumnName("claimRefundOfficer");
+            entity.Property(e => e.ClaimRefundOfficerComments).HasColumnName("claimRefundOfficerComments");
+            entity.Property(e => e.ClaimRefundOfficerDecision).HasColumnName("claimRefundOfficerDecision");
             entity.Property(e => e.ClaimRefundOfficerTimestamp).HasColumnName("claimRefundOfficerTimestamp");
+            entity.Property(e => e.VettingOfficer).HasColumnName("vettingOfficer");
+            entity.Property(e => e.VettingStatus).HasColumnName("vettingStatus");
+            entity.Property(e => e.VettingTimestamp).HasColumnName("vettingTimestamp");
             entity.Property(e => e.AuditOfficer).HasColumnName("auditOfficer");
+            entity.Property(e => e.AuditOfficerComments).HasColumnName("auditOfficerComments");
+            entity.Property(e => e.AuditOfficerDecision).HasColumnName("auditOfficerDecision");
             entity.Property(e => e.AuditOfficerTimestamp).HasColumnName("auditOfficerTimestamp");
             entity.Property(e => e.FinanceOfficer).HasColumnName("financeOfficer");
+            entity.Property(e => e.FinanceOfficerComments).HasColumnName("financeOfficerComments");
             entity.Property(e => e.FinanceOfficerTimestamp).HasColumnName("financeOfficerTimestamp");
+            entity.Property(e => e.FrontDeskOfficer).HasColumnName("frontDeskOfficer");
+            entity.Property(e => e.FrontDeskTimestamp).HasColumnName("frontDeskTimestamp");
             entity.Property(e => e.Dispatch).HasColumnName("dispatch");
             entity.Property(e => e.DispatchTimestamp).HasColumnName("dispatchTimestamp");
+            entity.Property(e => e.Receipient).HasColumnName("receipient");
+            entity.Property(e => e.CompanyType).HasColumnName("companyType");
+            entity.Property(e => e.ReceptionDate).HasColumnName("receptionDate");
+            entity.Property(e => e.PaymentMethod).HasColumnName("paymentMethod");
+            entity.Property(e => e.LastWorkedOnBy).HasColumnName("lastWorkedOnBy");
+            entity.Property(e => e.LastWorkedOnAt).HasColumnName("lastWorkedOnAt");
         });
 
        modelBuilder.Entity<Accounttransaction>(entity =>
@@ -143,6 +169,19 @@ public partial class AfsContext : DbContext
 
            entity.Property(e => e.Id).HasColumnName("id");
            entity.Property(e => e.ProviderId).HasColumnName("providerId");
+           entity.Property(e => e.UserId).HasColumnName("userId");
+           entity.Property(e => e.Status).HasColumnName("status");
+           entity.Property(e => e.LastUpdate).HasColumnName("lastUpdate");
+        });
+       modelBuilder.Entity<AmsHspHistory>(entity =>
+        {
+            entity.ToTable("ams_hsp_history");
+
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+           entity.Property(e => e.Id).HasColumnName("id");
+           entity.Property(e => e.ProviderId).HasColumnName("providerId");
+           entity.Property(e => e.UserId).HasColumnName("userId");
            entity.Property(e => e.Status).HasColumnName("status");
            entity.Property(e => e.LastUpdate).HasColumnName("lastUpdate");
         });
@@ -164,13 +203,25 @@ public partial class AfsContext : DbContext
            entity.Property(e => e.MaternityDeliveryBenefit).HasColumnName("maternityDeliveryBenefit");
            entity.Property(e => e.ChronicBenefit).HasColumnName("chronicBenefit");
            entity.Property(e => e.CancerBenefit).HasColumnName("cancerBenefit");
+           entity.Property(e => e.OverallSurgeryBenefit).HasColumnName("overallSurgeryBenefit");
            entity.Property(e => e.LastUpdate).HasColumnName("lastUpdate");
         });
 
         modelBuilder.Entity<AmsCroElement>().HasNoKey();
         modelBuilder.Entity<AmsHspElement>().HasNoKey();
         modelBuilder.Entity<AmsUserPerformance>().HasNoKey();
+        modelBuilder.Entity<Files>(entity => {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+            entity.ToTable("files");
 
+            entity.Property(e => e.Id).HasColumnType("bigint(20)");
+            entity.Property(e => e.UploadedBy).HasColumnType("bigint(20)");
+            //entity.Property(e => e.Name).HasColumnType("text");
+            entity.Property(e => e.RefundCode).HasColumnType("text");
+            entity.Property(e => e.IsApproved);
+            entity.Property(e => e.Path).HasColumnType("text");
+            entity.Property(e => e.Timestamp).HasColumnType("datetime");
+        });
         modelBuilder.Entity<Member>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
